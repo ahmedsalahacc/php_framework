@@ -56,7 +56,7 @@ class Router
         $method = $this->request->getMethod();
         $callback = $this->routes[$method][$path] ?? false;
 
-        if ($callback ===false){
+        if ($callback === false){
             Application::$app->response->setStatusCode(404);
             return $this->renderView("_404.html");
         }
@@ -103,11 +103,16 @@ class Router
         return ob_get_clean();
     }
 
-    protected function renderOnlyView($view, $params){
+    protected function renderOnlyView($view, $params=[]){
         /**
          * includes the code in the view file and retuns its content
          * @TODO research ob_start and ob_get_clean
          */
+        //changing keys to variable names
+        foreach($params as $key=>$value){
+            $$key = $value;
+        }
+        
         ob_start();
         include_once Application::$ROOT_DIR."/views/$view";
         return ob_get_clean();

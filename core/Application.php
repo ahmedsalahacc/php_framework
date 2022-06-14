@@ -10,10 +10,10 @@ namespace app\core;
 class Application
 {
     public static string $ROOT_DIR;
+    public static Application $app;
     public Router $router;
     public Request $request;
     public Response $response;
-    public static Application $app;
 
     public function __construct($rootpath){
         self::$ROOT_DIR = $rootpath;

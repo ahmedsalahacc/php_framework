@@ -1,4 +1,5 @@
 <div class="container">
+    <h1><?php echo $header?></h1>
     <form action="/contact" method="post">
         <div class="form-group">
             <label for="exampleInputEmail1">Subject</label>

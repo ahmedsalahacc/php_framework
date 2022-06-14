@@ -2,20 +2,14 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-use app\controllers\SiteController;
 use app\core\Application;
+
+use app\controllers\SiteController;
 
 $app = new Application(dirname(__DIR__));
 
-$app->router->get('/api', function(){
-    return "Hi";
-});
-$app->router->get('/', 'main.html');
+$siteController = new SiteController($app);
 
-$app->router->get('/contact', [SiteController::class, 'contact']);
-
-$app->router->post('/contact', [SiteController::class, 'handleContact']);
-
-$app->router->get('/page', 'page.html');
+echo $siteController->publishRoutes();
 
 $app->run();
