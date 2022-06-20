@@ -4,7 +4,7 @@ Custom MVC Framework for PHP made from scratch
 
 ## Project Structure
 ```
-📦 JETFLIX
+📦 Salah_MVC
 ├─ controllers
 │  ├─ RootController.php
 │  └─ SiteController.php
