@@ -1,0 +1,42 @@
+/*--- Theme Components ---*/
+.dark{
+    background-color: #292929;
+    color: whitesmoke;
+    /* border: 2px solid black; */
+}
+
+.z-index-2{
+    z-index: 2;
+}
+
+.hamburger{
+    z-index: 10;
+    background-color: white;
+    color: white;
+    font-size: 160%;
+}
+
+.hamburger:hover{
+    color: #e61e25;
+}
+
+.netflix-red{
+    color: #e61e25;
+    background-color: #e61e25;
+}
+
+/*--- Utilities ---*/
+
+
+
+/* @TODO  DEPRICATED*/
+.footer{
+    position: relative;
+    bottom: 1%;
+    left: 1%;
+    right: 1%;
+    padding: 2% 1%;
+    background-color: red;
+}
+
+

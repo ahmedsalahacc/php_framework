@@ -1,5 +1,8 @@
 <?php
 namespace app\core;
+
+use ErrorException;
+
 /**Author: AhmedSalah */
 /**
  * Class Router
@@ -58,12 +61,17 @@ class Router
 
         if ($callback === false){
             Application::$app->response->setStatusCode(404);
-            return $this->renderView("_404.html");
+            return $this->renderView("404.html");
         }
 
         // API (function callback)
         if (is_string($callback)){
             return $this->renderView($callback);
+        }
+        
+        if (is_array($callback)){
+            $callback[0] = new $callback[0]();
+
         }
         // String - Array callback
         return call_user_func($callback);
@@ -99,7 +107,7 @@ class Router
          * @TODO
          */
         ob_start();
-        include_once Application::$ROOT_DIR."/views/templates/base.html";
+        include_once Application::$ROOT_DIR."/views/templates/base.php";
         return ob_get_clean();
     }
 
@@ -108,13 +116,15 @@ class Router
          * includes the code in the view file and retuns its content
          * @TODO research ob_start and ob_get_clean
          */
+        
         //changing keys to variable names
         foreach($params as $key=>$value){
             $$key = $value;
         }
         
         ob_start();
-        include_once Application::$ROOT_DIR."/views/$view";
+        session_start(); 
+        include_once Application::$ROOT_DIR."/views/pages/$view";
         return ob_get_clean();
     }
 

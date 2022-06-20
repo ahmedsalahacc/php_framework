@@ -14,13 +14,22 @@ class Application
     public Router $router;
     public Request $request;
     public Response $response;
-
-    public function __construct($rootpath){
+    public Session $session;
+    public Cookie $cookie;
+    public Database $db;
+    public int $port;
+    public function __construct(string $rootpath, array $config=[]){
         self::$ROOT_DIR = $rootpath;
         self::$app = $this;
         $this->request = new Request();
         $this->response = new Response();
+        $this->session = new Session();
+        $this->cookie = new Cookie();
         $this->router = new Router($this->request, $this->response);
+        $this->db = new Database($config);
+        $this->port = $config['port'];
+        // $this->db = new Database(array());
+        
     }
     
     public function run(){

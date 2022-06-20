@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    font-family: 'Quicksand',
+        sans-serif;
+}
+
+body{
+    background-color: black;
+}
+
+.scrollable{
+    overflow-y: scroll;
+}
+
+.central-view{
+    height: 100vh;
+    width: 100%;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    justify-content: space-around;
+}
+
+.col-side{
+    width: 18%;
+}
+
+.col-center{
+    width: 64%;  
+}
+
+.booster {
+    border-radius: 20px;
+    padding: 0.2% 1.0%;
+    background-image: none;
+    background-color: whitesmoke;
+    width: 700px;
+    height: 300px;
+    /* align-self: center; */
+    top: 5vh;
+    text-align: center;
+    justify-content: center;
+}
+
+.booster:hover {
+    opacity: 0.85;
+}
+
+.card-collection{
+    display: flex;
+    justify-content: space-around;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: 85%;
+    background-color: white;
+    height: max-content;
+    margin-top: 2%;
+    border-radius: 20px;
+    padding: 0.2% 1.0%;
+    align-items: stretch;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+}
+
+.ccard{
+    margin: 5px;
+    border-radius: 20px;
+    width: 180px;
+    height: 250px;
+    background-color: aqua;
+}
+
+
+
+/*--- Scrollbar configs ---*/
+
+/* width */
+    ::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+    ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 10px rgb(19, 18, 18);
+    border-radius: 5px;
+}
+
+/* Handle */
+    ::-webkit-scrollbar-thumb {
+    background: #b12025;
+    border-radius: 5px;
+}
+
+/* Handle on hover DEPRICATED FOR NOW*/
+    ::-webkit-scrollbar-thumb:hover {
+    /* background: #b30000; */
+}

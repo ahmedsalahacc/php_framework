@@ -3,10 +3,12 @@
 namespace app\controllers;
 use app\core\Application;
 use app\core\Router;
+use app\models\AdminModel;
 
 abstract class RootController{
     protected Application $app; 
     protected Router $router;
+    private array $sessionTimeTable;
 
     public function __construct(Application &$app){
         /**
@@ -47,6 +49,45 @@ abstract class RootController{
         $this->router->post($uri, $callback);
     }
 
+    public function getRequestBody(){
+        /**
+         * returns the body of the request
+         * @return array requestBody
+         */
+        return $this->app->request->getBody();
+    }
+
+public function getRequestQuery(){
+    return $this->app->request->getQuery();
+}
+
+    public function checkIfLoggedIn(){
+        return !($this->app->cookie->getCookie('login')===null);
+    }
+    
+    public function checkIfAdminLoggedIn(AdminModel $dbModelInstance){
+        $loggedin_acc = $this->app->cookie->getCookie('admin');
+        printContent($_COOKIE);    
+        $isFound = $dbModelInstance->find($loggedin_acc);
+        printContent($isFound);
+
+        return $isFound;
+    }
+
+    public function logout(){
+        $this->app->cookie->removeCookie('login');
+    }
+
+    public function setLoginStatusInSession($value, $ttl=5){
+        $this->logout();
+        $this->app->cookie->setCookie('login', $value, time()+60*$ttl);
+    }
+
+    public function redirect($where){
+        $port = $this->app->port;
+        return header("Location:http://localhost:$port$where");
+    }
+    
     /**
      * Abstruct function publicateRoutes must be implemented in all
      * inherited classes.
